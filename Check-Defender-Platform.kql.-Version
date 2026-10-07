@@ -1,0 +1,9 @@
+DeviceTvmInfoGathering
+
+| extend AdditionalFields = parse_json(AdditionalFields)
+
+| extend AvPlatformVersion = tostring(AdditionalFields.["AvPlatformVersion"])
+
+| where OSPlatform startswith "Windows"
+
+| where AvPlatformVersion contains "$Version"
